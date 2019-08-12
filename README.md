@@ -83,10 +83,51 @@ skpm publish <bump>
 You will need to specify a `repository` in the `package.json`:
 
 ```diff
-...
-+ "repository" : {
-+   "type": "git",
-+   "url": "git+https://github.com/ORG/NAME.git"
-+  }
-...
+=cssSprite( $spriteVals )
+	width: nth( $spriteVals, 1 )
+	height: nth( $spriteVals, 2 )
+	background-repeat: no-repeat
+	background-image: url( #{ nth( $spriteVals, 3 ) } )
+	background-position: nth( $spriteVals, 4 ) nth( $spriteVals, 5 )
+	@media only screen and ( -webkit-min-device-pixel-ratio: 2 ), only screen and ( min-device-pixel-ratio: 2 ) 
+		background-image: url( #{ nth( $spriteVals, 6 ) } )
+		background-size: $bgiSizeW $bgiSizeH
+	
+
+$th_flat_iconPath: '../img/th_flat_icon'
+$th_flat_iconURL: $th_flat_iconPath + '.png'
+$th_flat_iconx2URL: $th_flat_iconPath + '@2.png'
+$bgiSizeW: 439px
+$bgiSizeH: 422px
+$menu outlined #777777: 24px 24px $th_flat_iconURL -286px -356px $th_flat_iconx2URL
+$menu filled #ffffff: 24px 24px $th_flat_iconURL -216px -356px $th_flat_iconx2URL
+$menu filled #777777: 24px 24px $th_flat_iconURL -6px -356px $th_flat_iconx2URL
+$save outlined #777777: 24px 24px $th_flat_iconURL -286px -286px $th_flat_iconx2URL
+$save filled #ffffff: 24px 24px $th_flat_iconURL -216px -286px $th_flat_iconx2URL
+$save filled #cccccc: 24px 24px $th_flat_iconURL -146.5px -286px $th_flat_iconx2URL
+$save filled #777777: 24px 24px $th_flat_iconURL -6px -286px $th_flat_iconx2URL
+$email outlined #777777: 24px 24px $th_flat_iconURL -286px -216px $th_flat_iconx2URL
+$email filled #ffffff: 24px 24px $th_flat_iconURL -216px -216px $th_flat_iconx2URL
+$email filled #cccccc: 24px 24px $th_flat_iconURL -146px -216px $th_flat_iconx2URL
+$email filled #777777: 24px 24px $th_flat_iconURL -6px -216px $th_flat_iconx2URL
+$folder outlined #777777: 24px 24px $th_flat_iconURL -286px -146px $th_flat_iconx2URL
+$folder filled #ffffff: 24px 24px $th_flat_iconURL -216px -146px $th_flat_iconx2URL
+$folder filled #cccccc: 24px 24px $th_flat_iconURL -146px -146px $th_flat_iconx2URL
+$folder filled #777777: 24px 24px $th_flat_iconURL -6px -146px $th_flat_iconx2URL
+$bell outlined #777777: 24px 24px $th_flat_iconURL -286px -76px $th_flat_iconx2URL
+$bell filled #ffffff: 24px 24px $th_flat_iconURL -216px -76px $th_flat_iconx2URL
+$bell filled #777777: 24px 24px $th_flat_iconURL -76px -76px $th_flat_iconx2URL
+$print outlined #777777: 24px 24px $th_flat_iconURL -286px -6px $th_flat_iconx2URL
+$print filled #ffffff: 24px 24px $th_flat_iconURL -216px -6px $th_flat_iconx2URL
+$print filled #cccccc: 24px 24px $th_flat_iconURL -146px -6px $th_flat_iconx2URL
+$print filled #777777: 24px 24px $th_flat_iconURL -6px -6px $th_flat_iconx2URL
+$th_flat_iconList: $menu outlined #777777 menu outlined #777777, $menu filled #ffffff menu filled #ffffff, $menu filled #777777 menu filled #777777, $save outlined #777777 save outlined #777777, $save filled #ffffff save filled #ffffff, $save filled #cccccc save filled #cccccc, $save filled #777777 save filled #777777, $email outlined #777777 email outlined #777777, $email filled #ffffff email filled #ffffff, $email filled #cccccc email filled #cccccc, $email filled #777777 email filled #777777, $folder outlined #777777 folder outlined #777777, $folder filled #ffffff folder filled #ffffff, $folder filled #cccccc folder filled #cccccc, $folder filled #777777 folder filled #777777, $bell outlined #777777 bell outlined #777777, $bell filled #ffffff bell filled #ffffff, $bell filled #777777 bell filled #777777, $print outlined #777777 print outlined #777777, $print filled #ffffff print filled #ffffff, $print filled #cccccc print filled #cccccc, $print filled #777777 print filled #777777
+@each $icon in $th_flat_iconList 
+	$th_flat_iconName: nth( $icon, 2 )
+	$th_flat_iconClass: nth( $icon, 1 )
+	.icon-#{$th_flat_iconName} 
+		+cssSprite( $th_flat_iconClass )
+	
+
+
 ```
